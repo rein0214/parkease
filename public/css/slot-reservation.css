@@ -1,0 +1,237 @@
+form {
+    background-color: #006dff;
+}
+
+.bottom {
+    flex: 5;
+    background-color: #006dff;
+    padding: 30px;
+    padding-bottom: 120px; 
+}
+
+.title-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.title { 
+    color: #fffcec; 
+    font-size: 35px; 
+}
+
+.divider {
+    border: none;
+    border-top: 2px solid #fffcec;
+    margin-bottom: 25px;
+}
+
+.date-selector { 
+    display: flex; 
+    gap: 10px; 
+}
+
+.date-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.date-btn {
+    background: rgba(255, 252, 236, 0.2);
+    border: 2px solid #fffcec;
+    color: #fffcec;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.date-btn.active { 
+    background: #fffcec; 
+    color: #006dff; 
+}
+
+.legend-container {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+    background: rgba(255, 252, 236, 0.1);
+    padding: 15px 25px;
+    border-radius: 15px;
+    width: fit-content;
+}
+
+.legend-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.legend-label {
+    color: #fffcec;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fffcec;
+    font-size: 13px;
+}
+
+.l-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    background: rgba(255, 252, 236, 0.1);
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid rgba(255, 252, 236, 0.3);
+}
+
+.parking-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.parking-table th {
+    color: #fffcec;
+    padding-bottom: 10px;
+    font-size: 13px;
+    min-width: 70px;
+}
+
+.sticky-col {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    min-width: 120px;
+    background-clip: padding-box; 
+}
+
+.slot-num {
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.green-bg { 
+    background-color: #c1ff72 !important; 
+    color: #254200 !important; 
+}
+
+.yellow-bg { 
+    background-color: #ffde59 !important; 
+    color: #6e5a00 !important; 
+}
+
+.red-bg { 
+    background-color: #ff3131 !important; 
+    color: white !important; 
+}
+
+.blue-bg { background-color: #004aad; }
+.cream-bg { background-color: #fffcec; }
+
+.selected-bg { 
+    background-color: #c1ff72; 
+    border: 2px solid #254200; 
+}
+
+.time-cell {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fffcec; 
+    position: relative;
+}
+
+.time-cell input { display: none; }
+
+.time-cell.available input:checked + span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #c1ff72;
+    border: 3px solid #254200;
+    border-radius: 8px;
+}
+
+.time-cell.occupied {
+    background-color: #ff3131 !important; 
+    cursor: not-allowed;
+}
+
+.time-cell.occupied::after {
+    content: "✖";
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 18px;
+}
+
+.reservation-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fffcec;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.res-summary { display: flex; gap: 40px; }
+.res-label { font-size: 14px; color: #666; font-weight: bold; }
+.res-value { font-size: 24px; color: #006dff; font-weight: bold; }
+
+.confirm-btn {
+    background-color: #006dff;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.confirm-btn:hover { 
+    background-color: #004aad; 
+    transform: translateY(-3px); 
+}
+
+.time-cell.past-time {
+    background-color: #e0e0e0; /* Grey */
+    cursor: not-allowed;
+    border: none;
+    opacity: 0.5;
+}
+
+/* Ensure no hover effects on past times */
+.time-cell.past-time:hover {
+    background-color: #e0e0e0;
+    transform: none;
+}

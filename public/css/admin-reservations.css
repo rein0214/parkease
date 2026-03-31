@@ -1,0 +1,214 @@
+.admin-page-container {
+    background-color: #006dff; 
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    color: #fffcec; 
+    border-left: 6px solid #fffcec;
+    padding-left: 30px;
+}
+
+.header-text h1 {
+    color: #fffcec;
+    font-size: 42px; 
+    margin: 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.subtitle-light {
+    color: rgba(255, 252, 236, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header-date {
+    background: rgba(255, 252, 236, 0.2);
+    border: 2px solid #fffcec;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #fffcec;
+}
+
+.table-wrapper {
+    background: #fffcec; 
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.parkease-mgmt-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.parkease-mgmt-table th {
+    background-color: #f1f4f8;
+    color: #004aad;
+    text-align: left;
+    padding: 20px 25px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #dee2e6;
+    text-align: center;
+}
+
+.res-row {
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s ease;
+}
+
+.res-row:hover {
+    background-color: #f1f8ff; 
+}
+
+.parkease-mgmt-table td {
+    padding: 20px 25px;
+    color: #333;
+    vertical-align: middle;
+}
+
+.date-cell {
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+}
+
+.driver-cell strong {
+    font-size: 15px;
+    color: #006dff;
+}
+
+.slot-id-pill {
+    background-color: #006dff;
+    color: #fffcec;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 109, 255, 0.2);
+}
+
+.time-cell { 
+    font-weight: 700; 
+    color: #444; 
+    font-size: 15px;
+}
+
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    min-width: 100px;
+}
+
+.Upcoming { background: #e3f2fd; color: #006dff; border: 1px solid #006dff; }
+.Checked-In { background: #fffde7; color: #856404; border: 1px solid #ffe58f; }
+.Completed { background: #c1ff72; color: #254200; border: 1px solid #a3e64d; }
+.Cancelled { background: #ffecec; color: #ff3131; border: 1px solid #ff3131; }
+
+.btn-pay {
+    background-color: #006dff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-pay:hover { background-color: #004aad; transform: translateY(-2px); }
+
+.paid-success {
+    color: #254200;
+    font-weight: 800;
+    background: #c1ff72;
+    padding: 8px 14px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.btn-group {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.btn-action {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-blue { background: #006dff; color: white; }
+.btn-green { background: #254200; color: white; } 
+
+.btn-cancel {
+    background: transparent;
+    border: 2px solid #ff3131;
+    color: #ff3131;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-cancel:hover { background: #ff3131; color: white; }
+
+.disabled-btn {
+    background-color: #d1d1d1 !important;
+    color: #888 !important;
+    border: 2px solid #bbb !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+
+.overstay-alert {
+    background-color: #fff1f1 !important; 
+    border-left: 5px solid #ff3131;
+}
+
+.warning-tag {
+    background: #ff3131;
+    color: white;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    font-weight: 900;
+    vertical-align: middle;
+}
+
+.no-data {
+    text-align: center;
+    padding: 60px !important;
+    color: #999;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.actions-head { text-align: right !important; }

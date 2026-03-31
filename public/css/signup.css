@@ -1,0 +1,31 @@
+.bottom {
+  flex: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #006dff;
+}
+
+.option-icon {
+	width: 240px;
+	height: auto;
+  	transition: transform 0.3s ease;
+  	will-change: filter, transform;
+}
+
+.option-btn {
+	background: transparent;
+  	border: none;            
+  	padding: 0;
+  	cursor: pointer;
+  	display: flex;          
+  	align-items: center;
+  	justify-content: center;
+  	transition: transform 0.2s ease; 
+  	padding: 0px 60px 20px;
+}
+
+.option-btn:hover .option-icon {
+  	transform: scale(1.1);
+}

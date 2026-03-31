@@ -1,0 +1,178 @@
+.admin-bottom {
+    flex: 5;
+    background-color: #006dff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 60px 2.5%; 
+    min-height: 90vh;
+}
+
+.admin-page-header {
+    width: 100%;
+    max-width: 1600px;
+    border-left: 6px solid #fffcec;
+    padding-left: 30px;
+}
+
+.title-white {
+    color: #fffcec;
+    font-size: 52px;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.subtitle-light {
+    color: rgba(255, 252, 236, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+.admin-nav {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #fffcec;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 14px;
+    background: rgba(255, 252, 236, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 252, 236, 0.1);
+}
+
+.nav-item.active {
+    background: #fffcec;
+    color: #006dff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.details-card {
+    background-color: #fffcec;
+    width: 100%;
+    max-width: 1600px;
+    border-radius: 40px;
+    padding: 60px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.card-header {
+    margin-bottom: 30px;
+}
+
+.title {
+    color: #006dff;
+    font-size: 36px;
+    margin: 0;
+}
+
+.admin-subtitle {
+    color: #004aad;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0 12px; 
+}
+
+.admin-table th {
+    font-size: 12px;
+    color: #004aad;
+    text-transform: uppercase;
+    padding: 0 25px 10px 25px;
+    opacity: 0.6;
+    letter-spacing: 1.5px;
+}
+
+.admin-table td {
+    background: #ffffff;
+    padding: 25px;
+    font-size: 16px;
+    color: #2d3436;
+    border: none;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-table td:first-child { 
+    border-radius: 18px 0 0 18px; 
+}
+.admin-table td:last-child { 
+    border-radius: 0 18px 18px 0; 
+}
+
+.admin-table tbody tr:hover td {
+    background: #f0f7ff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,109,255,0.1);
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.user-name { font-weight: 700; }
+.user-email { color: #006dff; font-weight: 500; text-align: center; }
+
+.role-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+.role-admin {
+    background-color: #ffd700;
+    color: #554400;
+    border: 1px solid #b8860b;
+}
+
+/* Member Styling (Blue) */
+.role-user {
+    background-color: #e3f2fd;
+    color: #006dff;
+    border: 1px solid #006dff;
+}
+
+.table-cancel-btn {
+    background: #fff0f0;
+    border: 2px solid #ff3131;
+    color: #ff3131;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.table-cancel-btn:hover {
+    background: #ff3131;
+    color: #fffcec;
+}
+
+.self-tag {
+    color: #004aad;
+    font-weight: 800;
+    font-size: 12px;
+    background: rgba(0, 74, 173, 0.1);
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: 1px dashed #004aad;
+    display: inline-block;
+}

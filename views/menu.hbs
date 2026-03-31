@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menu Page</title>
+        <link rel="stylesheet" type="text/css" media="all" href="/css/menu.css">
+    </head>
+    
+    <body>
+          <div class="icon-container">
+            <a href="{{#if user.isAdmin}}/admin-mainpage{{else}}/mainpage{{/if}}">
+                <button class="menu-btn">
+                    <img src="Homepage-Assets/icon-menu.png" class="menu-icon">
+                </button>
+            </a>
+          </div>
+          
+          <div class="settings-container">
+            {{#if user.isAdmin}}
+                <a href="/admin-mainpage" class="profile">
+                    <h2>Dashboard</h2>
+                </a>
+                
+                <a href="/admin-users" class="profile">
+                    <h2>Manage Users</h2>
+                </a>
+
+                <a href="/admin-reservations" class="profile">
+                    <h2>Manage Reservations</h2>
+                </a>
+            {{else}}
+                <a href="/" class="profile">
+                    <h2>Mainpage</h2>
+                </a>
+
+                <a href="/view-reservations" class="profile">
+                    <h2>Reservations</h2>
+                </a>
+
+                <a href="/profile" class="profile">
+                    <h2>My Profile</h2>
+                </a>
+            {{/if}}
+            
+            <a href="/logout" class="profile">
+                <h2 style="color: #ff3131;">Log out</h2>
+            </a>
+          </div>
+    </body>
+</html>

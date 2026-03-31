@@ -1,0 +1,187 @@
+.admin-bottom {
+    flex: 5;
+    background-color: #006dff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 2.5%; 
+    min-height: 85vh;
+}
+
+.admin-page-header {
+    width: 100%;
+    max-width: 1600px;
+    text-align: left;
+    border-left: 6px solid #fffcec;
+    padding-left: 30px;
+}
+
+.title-white {
+    color: #fffcec;
+    font-size: 42px; 
+    margin: 0;
+    font-weight: bold;
+}
+
+.subtitle-light {
+    color: rgba(255, 252, 236, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1600px;
+}
+
+.stat-box {
+    background-color: #fffcec;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.stat-box h3 {
+    font-size: 14px;
+    color: #004aad;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #006dff;
+}
+
+.details-card {
+    background-color: #fffcec;
+    width: 100%;
+    max-width: 1600px;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    font-size: 13px;
+    color: #004aad;
+    text-transform: uppercase;
+    padding: 20px;
+    border-bottom: 3px solid rgba(0, 109, 255, 0.2);
+    text-align: center;
+}
+
+.admin-table td {
+    padding: 20px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0, 109, 255, 0.1);
+    text-align: center;
+}
+
+.text-center { text-align: center; }
+.text-bold { font-weight: bold; }
+
+.table-cancel-btn {
+    background-color: transparent;
+    border: 2px solid #ff3131;
+    color: #ff3131;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.table-cancel-btn:hover {
+    background-color: #ff3131;
+    color: #fffcec;
+}
+
+
+.details-card .title {
+    color: #006dff;
+    font-size: 32px;
+    margin: 0;
+}
+
+.details-card .admin-subtitle {
+    color: #004aad;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.booking-id {
+    font-family: monospace;
+    color: #006dff;
+    font-weight: bold;
+    
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.text-right {
+    text-align: center;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 40px;
+    color: #004aad;
+    opacity: 0.5;
+}
+
+.divider {
+    border: 0;
+    border-top: 2px solid rgba(0, 109, 255, 0.1);
+    margin: 20px 0;
+}
+
+.card-header.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%;
+}
+
+.walk-in-btn-small {
+    background-color: #006dff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.walk-in-btn-small:hover {
+    background-color: #fffcec;
+    color: #006dff;
+    border: 2px solid #006dff;
+    transform: translateY(-2px);
+}
+
+.header-text {
+    flex: 1;
+}

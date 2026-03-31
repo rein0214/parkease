@@ -1,0 +1,118 @@
+.bottom {
+  flex: 5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #006dff; 
+  padding: 60px 20px;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 64px; 
+  font-weight: 800;
+  color: #fffcec; 
+  width: 100%;
+  max-width: 1000px;
+  text-align: left;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.divider {
+  width: 100%;
+  max-width: 1000px;
+  border: none;
+  border-top: 4px solid #fffcec; 
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.reservation-list {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.res-card {
+  background-color: #fffcec; 
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 109, 255, 0.1);
+}
+
+.res-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.res-info h3 {
+  color: #006dff;
+  font-size: 32px;
+  margin: 0 0 8px 0;
+  font-weight: 800;
+}
+
+.res-info p {
+  color: #333;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+.res-date {
+  font-style: italic;
+  color: #666 !important;
+  opacity: 0.8;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.status-btn {
+  padding: 12px 30px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 140px;
+  text-align: center;
+}
+
+.status-btn.pending, 
+.status-btn.Upcoming {
+  background-color: #e3f2fd;
+  color: #006dff;
+  border: 2px solid #006dff;
+}
+
+.status-btn.active, 
+.status-btn.Checked-In {
+  background-color: #fffde7;
+  color: #856404;
+  border: 2px solid #ffe58f;
+}
+
+.status-btn.completed, 
+.status-btn.Completed {
+  background-color: #c1ff72;
+  color: #254200;
+  border: 2px solid #a3e64d;
+}
+
+.status-btn.cancelled, 
+.status-btn.Cancelled {
+  background-color: #ffecec;
+  color: #ff3131;
+  border: 2px solid #ff3131;
+  opacity: 0.8;
+}

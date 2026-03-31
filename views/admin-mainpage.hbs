@@ -1,0 +1,67 @@
+<div class="admin-bottom">
+    
+    <div class="admin-page-header">
+        <h1 class="title-white">Control Center</h1>
+        <p class="subtitle-light">ParkEase Management Dashboard</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-box">
+            <h3>Total Users</h3>
+            <div class="stat-number">{{stats.userCount}}</div>
+        </div>
+        <div class="stat-box">
+            <h3>Total Revenue</h3>
+            <div class="stat-number">₱{{stats.revenue}}</div>
+        </div>
+        <div class="stat-box highlight">
+            <h3>Bookings Today</h3>
+            <div class="stat-number">{{stats.activeToday}}</div>
+        </div>
+    </div>
+
+    <div class="details-card">
+        <div class="card-header flex-between">
+            <div class="header-text">
+                <h1 class="title">Recent Reservations</h1>
+                <p class="admin-subtitle">Live System Activity</p>
+            </div>
+
+            <a href="/slot-reservation?branch=A&adminMode=true" class="walk-in-btn-small">
+                + NEW WALK-IN
+            </a>
+        </div>
+        
+        <hr class="divider">
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Booking ID</th>
+                        <th>Date of Booking</th>
+                        <th>Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each latestBookings}}
+                    <tr>
+                        <td class="text-bold">{{this.displayUserId}}</td>
+                        
+                        <td><span class="booking-id">#{{this.displayId}}</span></td>
+                        
+                        <td>{{this.date}}</td>
+                        <td class="text-right">
+                            <form action="/reservation-action" method="POST" onsubmit="return confirm('Cancel this reservation?')">
+                                <input type="hidden" name="reservationId" value="{{this._id}}">
+                                <button name="action" value="cancel" class="table-cancel-btn">REMOVE BOOKING</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

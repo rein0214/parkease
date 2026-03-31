@@ -1,0 +1,29 @@
+<div class="bottom">
+    <h1 class="title">My Reservations</h1>
+    <hr class="divider">
+    
+    <div class="reservation-list">
+        {{#if reservations}}
+            {{#each reservations}}
+            <a href="/reservation-details?id={{_id}}" style="text-decoration: none; color: inherit;">
+                <div class="res-card">
+                    <div class="res-info">
+                        <h3>Ticket #{{this.bookingId}}</h3>
+                        <p>Branch {{this.branch}} | {{formatTimeRange this.timeSlots}}</p>
+                        <p class="res-date"><i>{{this.date}}, 2026</i></p>
+                    </div>
+                    
+                    <button class="status-btn {{statusClass this.status}}">
+                        {{this.status}}
+                    </button>
+                </div>
+            </a>
+            {{/each}}
+        {{else}}
+            <div class="res-card">
+                <p style="color: #004aad; font-weight: bold;">You have no active reservations.</p>
+            </div>
+        {{/if}}
+    </div>
+	<br><br><br>
+</div>

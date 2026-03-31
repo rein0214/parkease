@@ -1,0 +1,68 @@
+<div class="bottom">
+    <div class="details-card">
+        <div class="card-header">
+            <a href="/view-reservations" class="back-link">← Back to List</a>
+            <h1 class="title">Reservation Details</h1>
+        </div>
+        
+        <hr class="divider">
+
+        <div class="details-grid">
+            <div class="info-section">
+                <div class="detail-item">
+                    <label>Location</label>
+                    <h2>Parking Branch {{res.branch}}</h2>
+                </div>
+                <div class="detail-item">
+                    <label>Date</label>
+                    <p>{{res.date}}, 2026</p>
+                </div>
+                <div class="detail-item">
+                    <label>Parking Slot</label>
+                    <p class="highlight-text">{{getSlotOnly res.timeSlots}}</p>
+                </div>
+                <div class="detail-item">
+                    <label>Current Status</label>
+                    
+                    {{#with (getReservationStatus res.date res.timeSlots) as |status|}}
+                        <span class="status-badge {{#if (eq status 'Active')}}active-bg{{else}}upcoming-bg{{/if}}">
+                            {{status}}
+                        </span>
+                    {{/with}}
+                </div>
+            </div>
+
+            <form action="/reservation-update" method="POST" class="edit-section">
+                <input type="hidden" name="reservationId" value="{{res._id}}">
+
+                <div class="input-group">
+                    <label>Change Start Time</label>
+                    <select name="startTime">
+                        {{#each availableOptions}}
+                            <option value="{{this}}" {{#if (eq this (getStartTime @root.res.timeSlots))}}selected{{/if}}>
+                                {{this}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Change End Time</label>
+                    <select name="endTime">
+                        {{#each availableOptions}}
+                            <option value="{{this}}" {{#if (eq this (getEndTime @root.res.timeSlots))}}selected{{/if}}>
+                                {{this}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+                
+                <div class="action-buttons">
+                    <button type="submit" name="action" value="update" class="update-btn">Update Reservation</button>
+                    
+                    <button type="submit" name="action" value="cancel" class="cancel-btn">Cancel Booking</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>      

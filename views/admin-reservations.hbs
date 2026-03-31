@@ -1,0 +1,103 @@
+<div class="admin-page-container">
+    <div class="admin-header">
+        <div class="header-text">
+            <h1>Reservation Management</h1>
+            <p class="subtitle-light">Real-time oversight of all parking branches</p>
+        </div>
+        <div class="header-date">
+            <span>Live Feed:</span> <strong>{{today}}</strong>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="parkease-mgmt-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Booking ID</th>
+                    <th>Slot ID</th> 
+                    <th>Time Window</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                    <th class="actions-head">Slot Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each reservations}}
+                <tr class="res-row {{#if this.isOverstaying}}overstay-alert{{/if}}">
+                    
+                    <td class="date-cell">{{this.date}}</td>
+
+                    <td class="driver-cell">
+                        <strong>{{this.displayUserId}}</strong>
+                        {{#if this.isOverstaying}}
+                            <span class="warning-tag">OVERSTAY</span>
+                        {{/if}}
+                    </td>
+
+                    <td>
+                        <span class="slot-id-pill">
+                            Branch {{this.branch}} | {{this.slotName}}
+                        </span>
+                    </td>
+
+                    <td class="time-cell">{{formatTime timeSlots}}</td>
+
+                    <td>
+                        <span class="status-badge {{statusClass this.status}}">
+                            {{this.status}}
+                        </span>
+                    </td>
+
+                    <td>
+                        {{#if this.isPaid}}
+                            <span class="paid-success">₱{{this.totalPrice}} Paid ✓</span>
+                        {{else}}
+                            <form action="/admin/update-payment" method="POST">
+                                <input type="hidden" name="resId" value="{{this._id}}">
+                                <button type="submit" class="btn-pay">Collect ₱{{this.totalPrice}}</button>
+                            </form>
+                        {{/if}}
+                    </td>
+
+                    <td class="actions-cell">
+                        <div class="btn-group">
+                            {{#if (eq this.status "Upcoming")}}
+                                <form action="/admin/update-status" method="POST">
+                                    <input type="hidden" name="resId" value="{{this._id}}">
+                                    <button name="newStatus" value="Checked-In" class="btn-action btn-blue">Check-In</button>
+                                </form>
+                            {{/if}}
+
+                            {{#if (eq this.status "Checked-In")}}
+                                <form action="/admin/update-status" method="POST">
+                                    <input type="hidden" name="resId" value="{{this._id}}">
+                                    <button name="newStatus" value="Completed" class="btn-action btn-green">Mark Left</button>
+                                </form>
+                            {{/if}}
+
+                            <form action="/reservation-action" method="POST" onsubmit="return confirm('Clear this slot?')">
+                                <input type="hidden" name="reservationId" value="{{this._id}}">
+                                
+                                {{#if this.isPaid}}
+                                    <button type="button" class="btn-cancel disabled-btn" title="Paid reservations cannot be cancelled">
+                                        LOCKED
+                                    </button>
+                                {{else}}
+                                    <button name="action" value="cancel" class="btn-cancel">
+                                        Cancel
+                                    </button>
+                                {{/if}}
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="7" class="no-data">No active reservations found.</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

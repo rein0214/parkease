@@ -1,0 +1,58 @@
+
+<div class="bottom">
+    <div class="profile-layout">
+        
+        <div class="sidebar">
+            <div class="summary-card">
+                <img src="/settings-assets/profile-picture.png" class="profile-pic" alt="User">
+
+                <div class="change-photo-container">
+                    <input type="file" id="upload-photo" hidden accept="image/*">
+                    <label for="upload-photo" class="change-photo-btn">Change Photo</label>
+                </div>
+
+                <h2>{{user.fullName}}</h2>
+                <p>@{{user.username}}</p>
+            </div>
+
+            <div class="actions-card">
+                <a href="/logout" class="logout-link">
+                    <button type="button" class="action-btn logout">Log Out</button>
+                </a>
+                <form action="/profile-delete" method="POST" onsubmit="return confirm('WARNING: This will permanently delete your account. Proceed?')">
+                    <input type="hidden" name="email" value="{{user.email}}">
+                    <button type="submit" class="action-btn delete">Delete Account</button>
+                </form>
+            </div>
+        </div>
+
+        <form action="/profile-update" method="POST" class="form-card">
+            <h1 class="title">Edit Profile</h1>
+            <hr class="divider">
+            
+            <div class="form-grid">
+                <div class="input-box">
+                    <label>Full Name</label>
+                    <input type="text" name="fullName" value="{{user.fullName}}">
+                </div>
+
+                <div class="input-box">
+                    <label>User ID</label>
+                    <input type="text" value="{{user.userId}}" readonly>
+                </div>
+
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <input type="email" name="email" value="{{user.email}}" readonly>
+                </div>
+
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <input type="text" name="phone" value="{{user.phone}}">
+                </div>
+            </div>
+
+            <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+    </div>
+</div>

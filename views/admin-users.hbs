@@ -1,0 +1,57 @@
+<div class="admin-bottom">
+    
+    <header class="admin-page-header">
+        <h1 class="title-white">User Management</h1>
+        <p class="subtitle-light">ParkEase Database Control</p>
+        
+        {{!-- <nav class="admin-nav">
+            <a href="/admin-mainpage" class="nav-item">Dashboard</a>
+            <a href="/admin-users" class="nav-item active">Manage Users</a>
+        </nav> --}}
+    </header>
+
+    <section class="details-card">
+        <div class="card-header">
+            <h1 class="title">System Accounts</h1>
+            <p class="admin-subtitle">Total: {{userCount}} Members Registered</p>
+        </div>
+        
+        <hr class="divider">
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th class="text-center">Account Type</th>
+                        <th class="text-right">Management</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td class="user-name">{{this.fullName}}</td>
+                        <td class="user-email">{{this.email}}</td>
+                        <td class="text-center">
+                            <span class="role-badge {{#if this.isAdmin}}role-admin{{else}}role-user{{/if}}">
+                                {{#if this.isAdmin}}ADMIN{{else}}MEMBER{{/if}}
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            {{#if (eq this.userId ../user.userId)}}
+                                <span class="self-tag">YOU</span>
+                            {{else}}
+                                <form action="/admin-delete-user" method="POST" onsubmit="return confirm('Permanently remove {{this.fullName}}?')">
+                                    <input type="hidden" name="userId" value="{{this._id}}">
+                                    <button type="submit" class="table-cancel-btn">REMOVE ACCOUNT</button>
+                                </form>
+                            {{/if}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

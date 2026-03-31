@@ -1,0 +1,35 @@
+
+<div class="bottom">
+	<p class="sub1-title">Sign Up</p>
+	
+	<div class="login-container">
+		<form class="login-form" action="/signup-submit" method="POST">
+			<input type="hidden" name="role" value="{{role}}">
+
+			<div class="input-line-group">
+				<label>Email</label>
+				<input type="email" name="email" required>
+			</div>
+
+			<div class="input-line-group">
+				<label>Password</label>
+				<input type="password" name="password" required>
+			</div>
+
+			<div class="input-line-group">
+				<label>Full Name</label>
+				<input type="text" name="fullName" required>
+			</div>
+
+			<div class="input-line-group">
+				<label>Phone Number</label>
+				<input type="text" name="phone" required>
+			</div>
+			
+			
+			<button type="submit" class="login-btn">
+				<span>CREATE ACCOUNT</span>
+			</button>
+		</form>
+	</div>
+</div>

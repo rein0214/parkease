@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  font-family: 'Arial', sans-serif;
+  background-color: #fffcec;
+}
+
+.icon-container {
+	max-height: 140px;
+  	flex: 1;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	margin-top: 100px;
+}
+
+.settings-container {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.menu-btn {
+	background: transparent;
+  	border: none;            
+  	padding: 0;
+  	cursor: pointer;
+  	display: flex;          
+  	align-items: center;
+  	justify-content: center;
+  	transition: transform 0.2s ease;
+}
+
+.menu-btn:hover .menu-icon {
+  	transform: scale(1.1);
+}
+
+.menu-icon {
+	max-width: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: #006dff;
+  transition: transform 0.3s ease;
+}
+
+a:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}

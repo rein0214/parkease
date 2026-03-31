@@ -1,0 +1,111 @@
+	<div class="bottom">
+		<form action="/reserve-submit" method="POST">  
+		<div class="title-area">
+			<h1 class="title">Parking Branch {{branch}}</h1>
+			<div class="date-selector">
+				{{#each availableDates}}
+                	<a href="/slot-reservation?branch={{../branch}}&date={{this}}" class="date-link">
+            			<button type="button" class="date-btn {{#if (eq this ../activeDate)}}active{{/if}}">
+                			{{this}}
+            			</button>
+        			</a>
+            	{{/each}}
+			</div>
+
+			<input type="hidden" name="date" value="{{activeDate}}">
+			<input type="hidden" name="branch" value="{{branch}}">
+
+		</div>
+
+		<hr class="divider">
+
+		<div class="legend-container">
+			<div class="legend-group">
+				<p class="legend-label">Slot Status:</p>
+				<div class="legend-item"><div class="l-box green-bg"></div> All Available</div>
+				<div class="legend-item"><div class="l-box yellow-bg"></div> Partially Booked</div>
+				<div class="legend-item"><div class="l-box red-bg"></div> Fully Booked</div>
+			</div>
+			<div class="legend-group">
+				<p class="legend-label">Time Selection:</p>
+				<div class="legend-item"><div class="l-box cream-bg"></div> Available</div>
+				<div class="legend-item"><div class="l-box blue-bg"></div> Occupied</div>
+				<div class="legend-item"><div class="l-box selected-bg"></div> Your Selection</div>
+			</div>
+		</div>
+		
+		<div class="table-wrapper">
+			<table class="parking-table">
+				<thead>
+					<tr>
+						<th >Slot #</th>
+						{{#each times}}
+							<th>{{this}}</th>
+						{{/each}}
+					</tr>
+				</thead>
+				{{#each slots as |slot|}}
+				<tbody>
+					<tr>
+						<td class="slot-num {{slot.statusClass}} sticky-col">
+							{{slot.name}}
+						</td>
+						
+						{{!-- {{#each ../times as |time|}}
+							<td>
+								{{#if (isBooked slot.name time @root.bookedSlots)}}
+									<label class="time-cell occupied">
+										<span></span>
+									</label>
+								{{else}}
+									<label class="time-cell available">
+										<input type="checkbox" name="slots" value="{{slot.name}}|{{time}}">
+										<span></span>
+									</label>
+								{{/if}}
+							</td>
+						{{/each}} --}}
+
+						{{#each ../times as |time|}}
+							<td>
+								{{#if (isPast ../../activeDate time)}}
+									{{!-- BLOCKED OFF / GREY --}}
+									<label class="time-cell past-time">
+										<span></span>
+									</label>
+								{{else}}
+									{{#if (isBooked slot.name time @root.bookedSlots)}}
+										<label class="time-cell occupied">
+											<span></span>
+										</label>
+									{{else}}
+										<label class="time-cell available">
+											<input type="checkbox" name="slots" value="{{slot.name}}|{{time}}">
+											<span></span>
+										</label>
+									{{/if}}
+								{{/if}}
+							</td>
+						{{/each}}
+					</tr>
+				</tbody>
+				{{/each}}
+				
+			</table>
+		</div>
+	</div>
+
+	<div class="reservation-bar">
+		<div class="res-summary">
+			<div class="res-info">
+				<p class="res-label">Selected Slots</p>
+				<p class="res-value">0</p>
+			</div>
+			<div class="res-info">
+				<p class="res-label">Total Price</p>
+				<p class="res-value">₱0.00</p>
+			</div>
+		</div>
+		<button class="confirm-btn">Confirm Reservation</button>
+	</div>
+</form>

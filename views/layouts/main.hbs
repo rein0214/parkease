@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkEase - Smart Parking</title>
+    
+    <link rel="stylesheet" href="/css/main.css"> 
+    
+    {{{style}}}
+
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="menu-area">
+                <a href="/menu">
+                    <button class="menu-btn">
+                        <img src="/homepage-assets/icon-menu.png" class="menu-icon" alt="Menu">
+                    </button>
+                </a>
+            </div>
+            <div class="logo-area">
+                {{#if user}}
+                    {{#if user.isAdmin}}
+                        <a href="/admin-mainpage">
+                            <img src="/homepage-assets/icon-logo.png" class="logo-icon" alt="ParkEase Admin Logo">
+                        </a>
+                    {{else}}
+                        <a href="/mainpage">
+                            <img src="/homepage-assets/icon-logo.png" class="logo-icon" alt="ParkEase Logo">
+                        </a>
+                    {{/if}}
+                {{else}}
+                    <a href="/">
+                        <img src="/homepage-assets/icon-logo.png" class="logo-icon" alt="ParkEase Logo">
+                    </a>
+                {{/if}}
+            </div>
+            <div class="spacer"></div>
+        </div>
+
+        {{{body}}}
+
+    </div>
+    
+</body>
+</html>
