@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const session = require('express-session');
 const PORT = process.env.PORT || 3000;
-const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo');
 const isAdmin = (req, res, next) => {
     if (req.session.user && req.session.user.isAdmin) {
         next(); 
@@ -186,9 +186,8 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'parkease-secret-key',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
-        client: mongoose.connection.getClient(), 
-        collectionName: 'sessions'
+    store: new MongoStore({
+    mongooseConnection: mongoose.connection
     }),
     cookie: { 
         secure: true, 
