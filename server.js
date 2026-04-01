@@ -169,12 +169,6 @@ app.set('views', path.join(__dirname, 'views'));
 // --- 3. MIDDLEWARE ---
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'parkease-secret-key', 
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } 
-}));
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null; 
     next();
