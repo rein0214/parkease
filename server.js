@@ -4,6 +4,7 @@ const { engine } = require('express-handlebars');
 const path = require('path');
 const app = express();
 const session = require('express-session');
+const PORT = process.env.PORT || 3000;
 const isAdmin = (req, res, next) => {
     if (req.session.user && req.session.user.isAdmin) {
         next(); 
@@ -565,12 +566,6 @@ app.post('/signup-submit', async (req, res) => {
         });
         
         await newUser.save();
-
-        req.session.user = { 
-            email: newUser.email, 
-            userId: newUser.userId, 
-            isAdmin: newUser.isAdmin 
-        };
         
         res.redirect('/'); 
     } catch (err) {
@@ -811,7 +806,6 @@ app.post('/admin/update-status', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('ParkEase running at http://localhost:3000');
+app.listen(PORT, () => {
+    console.log(`ParkEase running on port ${PORT}`);
 });
-
