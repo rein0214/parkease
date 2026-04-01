@@ -343,10 +343,10 @@ app.get('/view-reservations', async (req, res) => {
 });
 
 app.get('/slot-reservation', async (req, res) => {
+    const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Manila"}));
     const currentBranch = req.query.branch || "A";
     const todayStr = now.toDateString().slice(4, 10);
     const selectedDate = req.query.date || todayStr;
-    const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Manila"}));
 
     try {
         const existingBookings = await Reservation.find({ 
