@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const session = require('express-session');
 const PORT = process.env.PORT || 3000;
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 const isAdmin = (req, res, next) => {
     if (req.session.user && req.session.user.isAdmin) {
         next(); 
@@ -169,10 +169,6 @@ app.set('views', path.join(__dirname, 'views'));
 // --- 3. MIDDLEWARE ---
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-    res.locals.user = req.session.user || null; 
-    next();
-});
 
 app.set('trust proxy', 1); 
 
@@ -180,8 +176,10 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'parkease-secret-key',
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({
-    mongooseConnection: mongoose.connection
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+        collectionName: 'sessions',
+        ttl: 14 * 24 * 60 * 60
     }),
     cookie: { 
         secure: true, 
@@ -189,6 +187,11 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 
     }
 }));
+
+app.use((req, res, next) => {
+    res.locals.user = req.session ? req.session.user : null; 
+    next();
+});
 
 
 // --- 4. MODELS ---
