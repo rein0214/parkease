@@ -187,7 +187,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI, 
+        client: mongoose.connection.getClient(), 
         collectionName: 'sessions'
     }),
     cookie: { 
