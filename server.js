@@ -346,6 +346,7 @@ app.get('/slot-reservation', async (req, res) => {
     const currentBranch = req.query.branch || "A";
     const todayStr = now.toDateString().slice(4, 10);
     const selectedDate = req.query.date || todayStr;
+    const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Manila"}));
 
     try {
         const existingBookings = await Reservation.find({ 
@@ -360,8 +361,6 @@ app.get('/slot-reservation', async (req, res) => {
                        "16:00", "16:30", "17:00"];
     
         const slotNames = ["Slot 1", "Slot 2", "Slot 3", "Slot 4"];
-        
-        const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Manila"}));
         const isToday = selectedDate === todayStr;
 
         const slotsWithStatus = slotNames.map(name => {
