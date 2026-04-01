@@ -23,7 +23,7 @@ hbs.registerHelper('shortId', function(id) {
 });
 
 // --- 1. DATABASE CONNECTION ---
-const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://parkease-admin:<db_password>@parkease-cluster.pyege23.mongodb.net/?appName=parkease-cluster';
+const mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI)
     .then(() => console.log("Connected to MongoDB!"))
     .catch(err => console.error("Connection error:", err));
