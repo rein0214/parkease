@@ -344,7 +344,7 @@ app.get('/view-reservations', async (req, res) => {
 
 app.get('/slot-reservation', async (req, res) => {
     const currentBranch = req.query.branch || "A";
-    const todayStr = new Date().toDateString().slice(4, 10); // e.g., "Mar 24"
+    const todayStr = now.toDateString().slice(4, 10);
     const selectedDate = req.query.date || todayStr;
 
     try {
@@ -361,14 +361,14 @@ app.get('/slot-reservation', async (req, res) => {
     
         const slotNames = ["Slot 1", "Slot 2", "Slot 3", "Slot 4"];
         
-        const now = new Date();
+        const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Manila"}));
         const isToday = selectedDate === todayStr;
 
         const slotsWithStatus = slotNames.map(name => {
             const futureTimes = times.filter(t => {
                 if (!isToday) return true; 
                 const [h, m] = t.split(':').map(Number);
-                const slotDateTime = new Date(); 
+                const slotDateTime = new Date(now); 
                 slotDateTime.setHours(h, m, 0, 0);
                 return slotDateTime > now;
             });
@@ -381,7 +381,6 @@ app.get('/slot-reservation', async (req, res) => {
 
             let statusClass = "green-bg"; 
             
-            // If the day is over or all remaining slots are taken
             if (totalFutureSlots === 0 || occupiedFutureCount === totalFutureSlots) {
                 statusClass = "red-bg";    
             } else if (occupiedFutureCount > 0) {
