@@ -11,6 +11,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "connect-mongo": "^6.0.0",
     "express": "^5.2.1",
     "express-handlebars": "^8.0.6",
     "express-session": "^1.19.0",

@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 const session = require('express-session');
 const PORT = process.env.PORT || 3000;
+const MongoStore = require('connect-mongo');
 const isAdmin = (req, res, next) => {
     if (req.session.user && req.session.user.isAdmin) {
         next(); 
@@ -82,20 +83,17 @@ app.engine('hbs', engine({
         formatTime: function(timeSlots) {
             if (!timeSlots || timeSlots.length === 0) return "";
 
-            // Helper to convert "HH:mm" to "h:mm AM/PM"
             const to12Hour = (timeStr) => {
                 let [hours, minutes] = timeStr.split(':').map(Number);
                 const period = hours >= 12 ? 'PM' : 'AM';
-                hours = hours % 12 || 12; // Converts 0 to 12 and 13 to 1
+                hours = hours % 12 || 12; 
                 return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
             };
 
             const timesOnly = timeSlots.map(s => s.split('|')[1]).sort();
             
-            // Get Start Time
             const startTime = to12Hour(timesOnly[0]);
 
-            // Calculate End Time (Add 30 mins to last slot)
             const lastSlot = timesOnly[timesOnly.length - 1];
             let [hours, minutes] = lastSlot.split(':').map(Number);
             minutes += 30;
@@ -104,7 +102,6 @@ app.engine('hbs', engine({
                 minutes = 0;
             }
             
-            // Format the final calculated end time
             const endTime = to12Hour(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`);
 
             return `${startTime} - ${endTime}`;
@@ -155,7 +152,7 @@ app.engine('hbs', engine({
 
         isPast: function(dateStr, timeStr) {
             const todayStr = new Date().toDateString().slice(4, 10);
-            if (dateStr !== todayStr) return false; // Not today, so not past
+            if (dateStr !== todayStr) return false; 
 
             const now = new Date();
             const [h, m] = timeStr.split(':').map(Number);
@@ -182,6 +179,24 @@ app.use((req, res, next) => {
     res.locals.user = req.session.user || null; 
     next();
 });
+
+app.set('trust proxy', 1); 
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'parkease-secret-key',
+    resave: false,
+    saveUninitialized: false, 
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+        collectionName: 'sessions', 
+        ttl: 14 * 24 * 60 * 60 
+    }),
+    cookie: { 
+        secure: true,   
+        sameSite: 'none', 
+        maxAge: 1000 * 60 * 60 * 24 
+    }
+}));
 
 
 // --- 4. MODELS ---
@@ -328,68 +343,6 @@ app.get('/view-reservations', async (req, res) => {
         res.status(500).send("Error fetching reservations.");
     }
 });
-
-// app.get('/slot-reservation', async (req, res) => {
-//     const currentBranch = req.query.branch || "A";
-
-//     const today = new Date().toDateString().slice(4, 10);
-//     const selectedDate = req.query.date || today;
-
-//     try {
-//         const existingBookings = await Reservation.find({ 
-//             branch: currentBranch, 
-//             date: selectedDate 
-//         }).lean();
-
-//         const bookedSlots = existingBookings.flatMap(r => r.timeSlots);
-
-//         const times = ["07:00", "07:30", "08:00", "08:30", "09:00", "09:30", 
-//                        "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", 
-//                        "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", 
-//                        "16:00", "16:30", "17:00"];
-    
-//         const slotNames = ["Slot 1", "Slot 2", "Slot 3", "Slot 4"];
-
-//         // --- NEW LOGIC: CALCULATE SLOT STATUS ---
-//         const slotsWithStatus = slotNames.map(name => {
-//             const occupiedCount = bookedSlots.filter(s => s.startsWith(`${name}|`)).length;
-//             const totalPossible = times.length;
-
-//             let statusClass = "green-bg"; 
-            
-//             if (occupiedCount === totalPossible) {
-//                 statusClass = "red-bg";    
-//             } else if (occupiedCount > 0) {
-//                 statusClass = "yellow-bg"; 
-//             }
-
-//             return {
-//                 name: name,
-//                 statusClass: statusClass
-//             };
-//         });
-
-//         const availableDates = [];
-//         for (let i = 0; i < 7; i++) {
-//             let d = new Date();
-//             d.setDate(d.getDate() + i);
-//             availableDates.push(d.toDateString().slice(4, 10)); 
-//         }
-
-//         res.render('slot-reservation', { 
-//             style: '<link rel="stylesheet" href="/css/slot-reservation.css">',
-//             branch: currentBranch,
-//             times: times,
-//             slots: slotsWithStatus, 
-//             availableDates: availableDates,
-//             activeDate: selectedDate,
-//             bookedSlots: JSON.stringify(bookedSlots)
-//         });
-//     } catch(err) {
-//         console.error(err);
-//         res.status(500).send("Error loading page.");
-//     }
-// });
 
 app.get('/slot-reservation', async (req, res) => {
     const currentBranch = req.query.branch || "A";
