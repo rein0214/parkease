@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const session = require('express-session');
 const PORT = process.env.PORT || 3000;
-const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo');
 const isAdmin = (req, res, next) => {
     if (req.session.user && req.session.user.isAdmin) {
         next(); 
