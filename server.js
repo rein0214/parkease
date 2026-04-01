@@ -185,15 +185,14 @@ app.set('trust proxy', 1);
 app.use(session({
     secret: process.env.SESSION_SECRET || 'parkease-secret-key',
     resave: false,
-    saveUninitialized: false, 
+    saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI,
-        collectionName: 'sessions', 
-        ttl: 14 * 24 * 60 * 60 
+        mongoUrl: process.env.MONGODB_URI, 
+        collectionName: 'sessions'
     }),
     cookie: { 
-        secure: true,   
-        sameSite: 'none', 
+        secure: true, 
+        sameSite: 'lax', 
         maxAge: 1000 * 60 * 60 * 24 
     }
 }));
