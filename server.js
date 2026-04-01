@@ -585,11 +585,14 @@ app.post('/login-submit', async (req, res) => {
             isAdmin: user.isAdmin 
         };
 
-        if (user.isAdmin) {
-            res.redirect('/admin-mainpage');
-        } else {
-            res.redirect('/mainpage');
-        }
+        req.session.save((err) => {
+            if (err) return res.status(500).send("Session error");
+            if (user.isAdmin) {
+                res.redirect('/admin-mainpage');
+            } else {
+                res.redirect('/mainpage');
+            }
+        });
     } else {
         res.send("Invalid login");
     }
