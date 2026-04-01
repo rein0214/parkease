@@ -151,15 +151,18 @@ app.engine('hbs', engine({
         },
 
         isPast: function(dateStr, timeStr) {
-            const todayStr = new Date().toDateString().slice(4, 10);
+            const now = new Date();
+            const manilaTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Manila"}));
+            
+            const todayStr = manilaTime.toDateString().slice(4, 10);
+            
             if (dateStr !== todayStr) return false; 
 
-            const now = new Date();
             const [h, m] = timeStr.split(':').map(Number);
-            const slotTime = new Date();
+            const slotTime = new Date(manilaTime);
             slotTime.setHours(h, m, 0, 0);
             
-            return now > slotTime;
+            return manilaTime > slotTime;
         }
     }
 }));
@@ -358,16 +361,14 @@ app.get('/slot-reservation', async (req, res) => {
     
         const slotNames = ["Slot 1", "Slot 2", "Slot 3", "Slot 4"];
         
-        // --- NEW TIME-AWARE LOGIC ---
         const now = new Date();
         const isToday = selectedDate === todayStr;
 
         const slotsWithStatus = slotNames.map(name => {
-            // Filter only for times that are in the future relative to "now"
             const futureTimes = times.filter(t => {
-                if (!isToday) return true; // If viewing a future date, all times are future
+                if (!isToday) return true; 
                 const [h, m] = t.split(':').map(Number);
-                const slotDateTime = new Date(); // Today
+                const slotDateTime = new Date(); 
                 slotDateTime.setHours(h, m, 0, 0);
                 return slotDateTime > now;
             });
